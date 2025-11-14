@@ -1,11 +1,9 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
 
-var app = require('./app');
-var debug = require('debug')('car-rental-system:server');
+var app = require('./server/config/app');
+var debug = require('debug')('car-detail-system:server');
 var http = require('http');
 
 /**

@@ -1,28 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Detail Packages</title>
-
-    <link rel="stylesheet" href="/Content/car_detail_system.css">
-</head>
-<body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="/media/logo.png" class="logo" alt="Logo">
-            <span class="brand">Car Detail System</span>
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
+<%- include ./partials/header.ejs %>
+<%- include ./partials/main_nav.ejs %>
     <!-- HEADER / HERO -->
     <header id="home" class="hero">
         <img src="/media/logo.png" alt="Logo" class="hero-logo">
@@ -69,13 +46,4 @@
             <button type="submit">Send Message</button>
         </form>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>© 2025 Car Detail System</p>
-    </footer>
-
-    <script src="/Script/car_detail_system.js"></script>
-</body>
-</html> 
-
+<%- include ./partials/footer.ejs %>
