@@ -4,12 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // configuring database
-const mongoose = require('mongoose');
-const db = require('./db');
+let mongoose = require('mongoose');
+let DB = require('./db');
 
-mongoose.connect(db.URI)
-  then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+let mongoDB = mongoose.connection;
+mongoDB.on('error', console.error.bind('console','Connection Error'));
+mongoDB.once('open',()=>{
+  console.log('Connected to the MongoDB');
+});
 
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
