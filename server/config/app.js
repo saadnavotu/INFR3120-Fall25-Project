@@ -7,6 +7,9 @@ var logger = require('morgan');
 let mongoose = require('mongoose');
 let DB = require('./db');
 
+let packagesRouter = require('../routes/packages');
+app.use('/packages', packagesRouter);
+
 let mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind('console','Connection Error'));
 mongoDB.once('open',()=>{
