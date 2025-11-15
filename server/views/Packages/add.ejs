@@ -1,5 +1,5 @@
-<%- ./partials/header.ejs %>
-<%- ./partials/main_nav.ejs %>
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
 <div class="container">
     <div class="row">
         <div class="offset-md-3 col-md-6">
@@ -15,7 +15,7 @@
                         name="name" required>
                 </div>
 
-                <div clas="form-group">
+                <div class="form-group">
                     <label for="descriptionTextArea">Package Details</label>
                     <textarea class="form-control"
                      id="descriptionTextArea"
@@ -30,13 +30,13 @@
                     id="priceTextField"
                     placeholder="e.g., 79"
                     name="price"
-                    require>
+                    required>
                 </div>
 
                 <br>
 
                 <button class="btn btn-primary" type="submit">
-                    <i class=""fas fa-plus-circle></i> Create Package
+                    <i class="fas fa-plus-circle"></i> Create Package
                 </button>
 
                 <a href="/packages" class="btn btn-secondary">
@@ -48,4 +48,4 @@
         </div>
     </div>
 </div>
-<%- ./partials/footer.ejs %>
+<%- include ../partials/footer.ejs %>
