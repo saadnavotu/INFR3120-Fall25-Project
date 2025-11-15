@@ -1,8 +1,60 @@
 <%- ./partials/header.ejs %>
-<%- ./partials/main_nav.ejs %>
+    <%- ./partials/main_nav.ejs %>
 
+        <main class="container">
+            <div class="row">
+                <div class="offset-md-1 col-md-10">
 
+                    <h1>
+                        <%= title %>
+                    </h1>
 
+                    <a href="/packages/add" class="btn btn-primary mb-3">
+                        <i class="fas fa-plus-circle"></i> Add Package
+                    </a>
+                    <table class="table table-bordered table-striped table-hover">
 
+                        <!-- Header row -->
+                        <tr class="d-flex">
+                            <th class="text-center col-3">Package</th>
+                            <th class="col-5">Details</th>
+                            <th class="text-center col-1">Price</th>
+                            <th class="text-center col-1"></th>
+                            <th class="text-center col-1"></th>
+                        </tr>
 
-<%- ./partials/footer.ejs %>
+                        <% for(let i=0; i < PackageList.length; i++) { %>
+                            <tr class="d-flex">
+                                <td class="text-center col-3">
+                                    <%= PackageList[i].name %>
+                                </td>
+                                <td class="col-5">
+                                    <%= PackageList[i].description %>
+                                </td>
+                                <td class="text-center col-1">$<%= PackageList[i].price %>
+                                </td>
+
+                                <td class="text-center col-1">
+                                    <a href="/packages/edit/<%= PackageList[i]._id %>" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+
+                                <td class="text-center col-1">
+                                    <a href="/packages/delete/<%= PackageList[i]._id %>" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                            <% } %>
+
+                    </table>
+
+                </div>
+            </div>
+        </main>
+
+<br><br>
+
+        <%- ./partials/footer.ejs %>
