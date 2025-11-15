@@ -10,4 +10,4 @@ let packageModel = mongoose.Schema({
     collection: "packages"
 });
 
-module.exports = mongoose.model('Package', pacakgeModel);
+module.exports = mongoose.model('Package', packageModel);

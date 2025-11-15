@@ -1,8 +1,52 @@
 <%- ./partials/header.ejs %>
 <%- ./partials/main_nav.ejs %>
 
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
 
+            <form class="form" method="post">
 
+                <div class="form-group">
+                    <label for="nameTextField">Package Name</label>
+                    <input type="text" class="form-control"
+                        id="nameTextField"
+                        placeholder="e.g., Premium Interior"
+                        name="name" required>
+                </div>
 
+                <div clas="form-group">
+                    <label for="descriptionTextArea">Package Details</label>
+                    <textarea class="form-control"
+                     id="descriptionTextArea"
+                        placeholder="List what this package includes..."
+                        name="description"
+                        required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="priceTextField">Price ($)</label>
+                    <input type="number" class="form-control"
+                    id="priceTextField"
+                    placeholder="e.g., 79"
+                    name="price"
+                    require>
+                </div>
 
+                <br>
+
+                <button class="btn btn-primary" type="submit">
+                    <i class=""fas fa-plus-circle></i> Create Package
+                </button>
+
+                <a href="/packages" class="btn btn-secondary">
+                    <i class="fas fa-undo"></i> Cancel
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 <%- ./partials/footer.ejs %>

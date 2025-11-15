@@ -7,9 +7,6 @@ var logger = require('morgan');
 let mongoose = require('mongoose');
 let DB = require('./db');
 
-let packagesRouter = require('../routes/packages');
-app.use('/packages', packagesRouter);
-
 let mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind('console','Connection Error'));
 mongoDB.once('open',()=>{
@@ -18,6 +15,7 @@ mongoDB.once('open',()=>{
 
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
+let packagesRouter = require('../routes/packages');
 
 var app = express();
 
@@ -33,6 +31,7 @@ app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/packages', packagesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
