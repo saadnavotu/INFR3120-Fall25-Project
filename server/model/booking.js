@@ -1,27 +1,13 @@
-let mongoose = require('mongoose');
+let mongoose = require('mongoose')
 
-let BookingSchema = new mongoose.Schema({
-  customerName: { type: String, required: true },
-  customerPhone: { type: String, required: true },
-  customerEmail: { type: String },
-
-  vehicleMakeModel: { type: String },
-
-  // linked service package
-  servicePackageId: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Package', 
-    required: true 
-  },
-
-  bookingDate: { type: Date, required: true },
-  durationHours: { type: Number, default: 2 },
-
-  notes: { type: String }
+// create model class
+let bookingModel = mongoose.Schema({
+    name: String,
+    description: String,
+    price: Number
 },
 {
-  collection: "bookings",
-  timestamps: true
+    collection: "bookings"
 });
 
-module.exports = mongoose.model('Booking', BookingSchema);
+module.exports = mongoose.model('Booking', bookingModel);
