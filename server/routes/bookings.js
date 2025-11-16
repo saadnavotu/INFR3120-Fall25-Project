@@ -8,7 +8,7 @@ let Booking = require('../model/booking');
 // READ – Display all bookings
 router.get('/', async (req, res, next) => {
   try {
-    // No need to populate servicePackageId since we store the package as a string now
+    // dont need servicePackageId since we store the package as a string now
     const bookingList = await Booking.find().sort({ bookingDate: -1 });
     res.render('Bookings/list', {
       title: 'Bookings',
