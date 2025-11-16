@@ -53,7 +53,7 @@ router.post('/add', async (req, res, next) => {
       servicePackageId: req.body.servicePackageId,
 
       bookingDate: req.body.bookingDate,
-      
+
       durationHours: req.body.durationHours || 2,
       
       notes: req.body.notes
@@ -65,5 +65,50 @@ router.post('/add', async (req, res, next) => {
   catch (err) {
     console.log(err);
     res.render('Bookings/add', { error: 'Error on the server', packages: await Package.find() });
+  }
+});
+
+// UPDATE – Display Edit Form
+router.get('/edit/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const bookingToEdit = await Booking.findById(id);
+    const packages = await Package.find();
+    res.render('Bookings/edit', {
+      title: 'Edit Booking',
+      booking: bookingToEdit,
+      packages
+    });
+  }
+  catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
+// UPDATE – Process Edit Form
+router.post('/edit/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    let updatedBooking = {
+      customerName: req.body.customerName,
+      customerPhone: req.body.customerPhone,
+      customerEmail: req.body.customerEmail,
+      vehicleMakeModel: req.body.vehicleMakeModel,
+      
+      servicePackageId: req.body.servicePackageId,
+      bookingDate: req.body.bookingDate,
+      durationHours: req.body.durationHours || 2,
+     
+      notes: req.body.notes
+    };
+
+    await Booking.findByIdAndUpdate(id, updatedBooking);
+    res.redirect('/bookings');
+  }
+  catch (err) {
+    console.log(err);
+    next(err);
   }
 });
