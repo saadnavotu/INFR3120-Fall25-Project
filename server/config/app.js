@@ -40,7 +40,6 @@ app.use('/packages', packagesRouter);
 
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
-var packagesRouter = require('../routes/packages');
 var bookingsRouter = require('../routes/bookings'); 
 
 
