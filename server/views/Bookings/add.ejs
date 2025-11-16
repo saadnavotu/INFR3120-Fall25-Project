@@ -1,0 +1,39 @@
+<h1>Add Booking</h1>
+<form action="/bookings/add" method="post">
+  <label>Customer name</label>
+  <input name="customerName" required />
+
+  <label>Phone</label>
+  <input name="customerPhone" required />
+
+  <label>Email</label>
+  <input name="customerEmail" />
+
+  <label>Make/Model</label>
+  <input name="vehicleMakeModel" />
+
+  <label>Plate</label>
+  <input name="vehiclePlate" />
+
+  <label>Package</label>
+  <select name="servicePackage" required>
+    <option value="">-- choose package --</option>
+    <option value="Basic Wash">Basic Wash - $20</option>
+    <option value="Deluxe Wash">Deluxe Wash - $35</option>
+    <option value="Premium Wash">Premium Wash - $50</option>
+    <option value="Full Service">Full Service - $75</option>
+  </select>
+
+  <label>Date & time</label>
+  <input type="datetime-local" name="bookingDate" required />
+
+  <label>Duration (hours)</label>
+  <input type="number" min="1" name="durationHours" value="2" />
+
+  <label>Notes</label>
+  <textarea name="notes"></textarea>
+
+  <button type="submit">Create</button>
+</form>
+
+<a href="/bookings">Back</a>
