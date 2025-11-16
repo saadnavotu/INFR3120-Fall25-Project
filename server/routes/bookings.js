@@ -67,7 +67,7 @@ router.post('/add', async (req, res, next) => {
   }
 });
 
-// UPDATE – Display Edit Form
+// UPDATE – display Edit Form
 router.get('/edit/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -85,7 +85,7 @@ router.get('/edit/:id', async (req, res, next) => {
   }
 });
 
-// UPDATE – Process Edit Form
+// UPDATE – process Edit Form
 router.post('/edit/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
