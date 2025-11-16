@@ -17,9 +17,6 @@ mongoDB.once('open',()=>{
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 var packagesRouter = require('../routes/packages');
-var bookingsRouter = require('../routes/bookings');
-
-
 
 var app = express();
 
@@ -39,6 +36,17 @@ app.use('/packages', packagesRouter);
 
 
 
+//engine setiup for bookings CRUD
+
+var indexRouter = require('../routes/index');
+var usersRouter = require('../routes/users');
+var packagesRouter = require('../routes/packages');
+var bookingsRouter = require('../routes/bookings'); 
+
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/bookings', bookingsRouter);
 
 
 // catch 404 and forward to error handler
@@ -61,19 +69,5 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 
-
-//engine setiup for bookings CRUD
-
-var indexRouter = require('../routes/index');
-var usersRouter = require('../routes/users');
-var packagesRouter = require('../routes/packages');
-var bookingsRouter = require('../routes/bookings'); 
-
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/packages', packagesRouter);
-app.use('/bookings', bookingsRouter); 
-app.use('/bookings', bookingsRouter);
  
 

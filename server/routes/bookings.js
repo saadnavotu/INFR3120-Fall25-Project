@@ -17,9 +17,15 @@ router.get('/', async (req, res, next) => {
   }
   catch (err) {
     console.log(err);
-    res.render('Bookings/list', { error: 'Error on the Server' });
+    // send empty array so EJS doesn't crash
+    res.render('Bookings/list', { 
+      title: 'Bookings',
+      bookingList: [],
+      error: 'Error on the Server' 
+    });
   }
 });
+
 
 // CREATE Display Add Form
 router.get('/add', async (req, res, next) => {
