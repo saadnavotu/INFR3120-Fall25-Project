@@ -110,4 +110,21 @@ router.post('/edit/:id', async (req, res, next) => {
   }
 });
 
+
+
+/*// DELETE via POST
+router.post('/delete/:id', async (req, res, next) => {
+  try {
+    const booking = await Booking.findByIdAndDelete(req.params.id);
+    if (!booking) return next(new Error('Booking not found'));
+    res.redirect('/bookings');
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+*/
+
+
 module.exports = router;
