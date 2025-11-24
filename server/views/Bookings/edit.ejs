@@ -1,0 +1,44 @@
+<h1>Edit Booking</h1>
+<form action="/bookings/edit/<%= booking._id %>" method="post">
+  <label>Customer name</label>
+  <input name="customerName" value="<%= booking.customerName %>" required />
+
+  <label>Phone</label>
+  <input name="customerPhone" value="<%= booking.customerPhone %>" required />
+
+  <label>Email</label>
+  <input name="customerEmail" value="<%= booking.customerEmail %>" />
+
+  <label>Make/Model</label>
+  <input name="vehicleMakeModel" value="<%= booking.vehicleMakeModel %>" />
+
+  <label>Package</label>
+  <select name="servicePackage" required>
+    <% const packages = ['Basic Wash', 'Deluxe Wash', 'Premium Wash', 'Full Service']; %>
+    <option value="">-- choose package --</option>
+    <% packages.forEach(function(p) { %>
+      <option value="<%= p %>" <%= booking.servicePackage === p ? 'selected' : '' %>><%= p %></option>
+    <% }) %>
+  </select>
+
+  <label>Date & time</label>
+  <input type="datetime-local" name="bookingDate" 
+         value="<%= booking.bookingDate ? new Date(booking.bookingDate).toISOString().slice(0,16) : '' %>" required />
+
+  <label>Duration (hours)</label>
+  <input type="number" min="1" name="durationHours" value="<%= booking.durationHours %>" />
+
+  <label>Status</label>
+  <select name="status">
+    <% ['pending','confirmed','completed','cancelled'].forEach(function(s){ %>
+      <option value="<%= s %>" <%= booking.status === s ? 'selected' : '' %>><%= s %></option>
+    <% }) %>
+  </select>
+
+  <label>Notes</label>
+  <textarea name="notes"><%= booking.notes %></textarea>
+
+  <button type="submit">Save</button>
+</form>
+
+<a href="/bookings">Back</a>
