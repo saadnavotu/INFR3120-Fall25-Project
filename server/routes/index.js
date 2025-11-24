@@ -6,6 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
+<<<<<<< HEAD
 router.get('/login', (req, res) => {
     res.render('auth/login', { title: 'Login', displayName: "" });
 });
@@ -19,4 +20,6 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+=======
+>>>>>>> 51dc27babf3d61609b869e1b16d5474233b37a0e
 module.exports = router;
