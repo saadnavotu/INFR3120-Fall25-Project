@@ -32,7 +32,7 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-// GET route for displaying the Add Booking Page --> Create Operation
+// GET route for displaying the Add Booking Page Create Operation
 router.get('/add', async (req, res, next) => {
     try {
         res.render('Bookings/add', {
@@ -82,7 +82,7 @@ router.post('/add', async (req, res, next) => {
     }
 });
 
-// GET route for displaying the Edit Booking Page --> Update Operation
+// GET route for displaying the Edit Booking Page also know as the Update Operation
 router.get('/edit/:id', async (req, res, next) => {
     try {
         const id = req.params.id;
@@ -90,13 +90,15 @@ router.get('/edit/:id', async (req, res, next) => {
         res.render('Bookings/edit', {
             title: 'Edit Booking',
             booking: bookingToEdit,
-            displayName: req.user ? req.user.displayName : ""
+            displayName: req.user ? req.user.displayName : "",
+            error: null  // <- add this line
         });
     } catch (err) {
         console.log(err);
         next(err);
     }
 });
+
 
 // POST route for processing the Edit Booking Page --> Update Operation
 router.post('/edit/:id', async (req, res, next) => {

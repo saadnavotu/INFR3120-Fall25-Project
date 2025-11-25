@@ -16,31 +16,32 @@
             <table class="table table-bordered table-striped table-hover">
                 <!-- Header Row -->
                 <tr class="d-flex">
-                    <th class="text-center col-3">Customer</th>
-                    <th class="text-center col-2">Package</th>
-                    <th class="text-center col-2">Date & Time</th>
+                    <th class="text-center col-2">Customer</th>
+                    <th class="text-center col-2">Phone</th>
+                    <th class="text-center col-2">Email</th>
+                    <th class="text-center col-2">Vehicle</th>
+                    <th class="text-center col-1">Plate</th>
+                    <th class="text-center col-1">Package</th>
+                    <th class="text-center col-1">Duration</th>
                     <th class="text-center col-1">Status</th>
-                    <th class="text-center col-2"></th>
-                    <th class="text-center col-2"></th>
+                    <th class="text-center col-2">Actions</th>
                 </tr>
 
                 <% for (let i = 0; i < bookingList.length; i++) { 
                     const b = bookingList[i]; %>
                     <tr class="d-flex">
-                        <td class="text-center col-3">
-                            <%= b.customerName %> (<%= b.customerPhone %>)
-                        </td>
-                        <td class="text-center col-2"><%= b.servicePackage || '—' %></td>
-                        <td class="text-center col-2">
-                            <%= b.bookingDate ? new Date(b.bookingDate).toLocaleString() : '—' %>
-                        </td>
+                        <td class="text-center col-2"><%= b.customerName %></td>
+                        <td class="text-center col-2"><%= b.customerPhone %></td>
+                        <td class="text-center col-2"><%= b.customerEmail || '—' %></td>
+                        <td class="text-center col-2"><%= b.vehicleMakeModel || '—' %></td>
+                        <td class="text-center col-1"><%= b.vehiclePlate || '—' %></td>
+                        <td class="text-center col-1"><%= b.servicePackage || '—' %></td>
+                        <td class="text-center col-1"><%= b.durationHours || '—' %></td>
                         <td class="text-center col-1"><%= b.status %></td>
                         <td class="text-center col-2">
                             <a href="/bookings/edit/<%= b._id %>" class="btn btn-primary btn-sm">
                                 <i class="fas fa-pencil-alt"></i> Edit
                             </a>
-                        </td>
-                        <td class="text-center col-2">
                             <a href="/bookings/delete/<%= b._id %>" class="btn btn-danger btn-sm" onclick="return confirm('Delete this booking?')">
                                 <i class="fas fa-trash-alt"></i> Delete
                             </a>
