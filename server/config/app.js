@@ -12,6 +12,8 @@ let passport = require('passport');
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
+var app = express();
+
 let cors = require('cors')
 var app = express();
 let userModel = require('../model/user');
@@ -49,7 +51,7 @@ var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 var packagesRouter = require('../routes/packages');
 
-var app = express();
+
 
 // view engine setup for packaegs CRUD
 app.set('views', path.join(__dirname, '../views'));
