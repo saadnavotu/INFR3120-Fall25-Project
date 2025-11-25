@@ -1,37 +1,57 @@
-<h1>Bookings</h1>
-<a href="/bookings/add">Add Booking</a>
-<table>
-  <thead>
-    <tr>
-      <th>Customer</th>
-      <th>Package</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% bookingList.forEach(function(b) { %>
-      <tr>
-        <td>
-          <%= b.customerName %> (<%= b.customerPhone %>)
-        </td>
-        <td>
-          <%= b.servicePackage || '—' %>
-        </td>
-        <td>
-          <%= b.bookingDate ? new Date(b.bookingDate).toLocaleString() : '—' %>
-        </td>
-        <td>
-          <%= b.status %>
-        </td>
-        <td>
-          <a href="/bookings/edit/<%= b._id %>">Edit</a>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/main_nav.ejs') %>
 
+<!-- Main content -->
+<main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1><%= title %></h1>
 
-          <!-- <a href="/bookings/delete/<%= b._id %>" onclick="return confirm('Delete this booking?')">Delete</a> -->
-        </td>
+            <% if (typeof displayName === 'string' && displayName) { %>
+                <a href="/bookings/add" class="btn btn-primary mb-3" role="button">
+                    <i class="fas fa-plus-circle"></i> Add Booking
+                </a>
+            <% } %>
 
+            <table class="table table-bordered table-striped table-hover">
+                <!-- Header Row -->
+                <tr class="d-flex">
+                    <th class="text-center col-3">Customer</th>
+                    <th class="text-center col-2">Package</th>
+                    <th class="text-center col-2">Date & Time</th>
+                    <th class="text-center col-1">Status</th>
+                    <th class="text-center col-2"></th>
+                    <th class="text-center col-2"></th>
+                </tr>
 
-      </tr>
-      <% }) %>
-  </tbody>
-</table>
+                <% for (let i = 0; i < bookingList.length; i++) { 
+                    const b = bookingList[i]; %>
+                    <tr class="d-flex">
+                        <td class="text-center col-3">
+                            <%= b.customerName %> (<%= b.customerPhone %>)
+                        </td>
+                        <td class="text-center col-2"><%= b.servicePackage || '—' %></td>
+                        <td class="text-center col-2">
+                            <%= b.bookingDate ? new Date(b.bookingDate).toLocaleString() : '—' %>
+                        </td>
+                        <td class="text-center col-1"><%= b.status %></td>
+                        <td class="text-center col-2">
+                            <a href="/bookings/edit/<%= b._id %>" class="btn btn-primary btn-sm">
+                                <i class="fas fa-pencil-alt"></i> Edit
+                            </a>
+                        </td>
+                        <td class="text-center col-2">
+                            <a href="/bookings/delete/<%= b._id %>" class="btn btn-danger btn-sm" onclick="return confirm('Delete this booking?')">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
+</main>
+
+<br><br>
+
+<%- include('../partials/footer.ejs') %>
