@@ -153,3 +153,7 @@ body {
     padding: 15px;
     text-align: center;
 }
+
+.welcome-text {
+    color: white;
+}
