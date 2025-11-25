@@ -48,22 +48,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-/*
-// expose user/displayName to every view so navbar can read it
-app.use((req, res, next) => {
-  // useful while debugging:
-  // console.log('req.user ->', req.user);
 
-  // make whole user available (if you want more fields)
-  res.locals.user = req.user || null;
-
-  // or just expose a display name (fall back to username or empty string)
-  res.locals.displayName = req.user ? (req.user.displayName || req.user.username || '') : '';
-
-  next();
-});
-
-*/
 
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');

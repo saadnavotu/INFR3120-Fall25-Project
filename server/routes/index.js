@@ -7,8 +7,29 @@ let User = userModel.User;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home' });
+  res.render('index', { title: 'Home',
+  displayName: req.user ? req.user.displayName : ""
+  });
+
 });
+
+/* GET home page. */
+router.get('/home', function(req, res, next) {
+  res.render('index', { title: 'Home',displayName: req.user?req.user.displayName:"" });
+});
+
+/* GET packages page. */
+router.get('/packages', function(req, res, next) {
+  res.render('Packages/list', { 
+    title: 'Add Package',
+    displayName: req.user ? req.user.displayName : "",
+    PackageList: []   // empty array for now to prevent errors
+  });
+});
+
+
+
+
 
 
 // Code used from lectures

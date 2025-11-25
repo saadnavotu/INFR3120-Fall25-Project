@@ -5,6 +5,14 @@ let mongoose = require('mongoose');
 // connect to package model
 let Package = require('../model/package');
 
+function requireAuth(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.redirect('/login');
+    }
+    next();
+}
+
+
 // READ – Display all packages
 router.get('/', async (req, res, next) => {
     try {
