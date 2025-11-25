@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
+
 // Code used from lectures
 
 // Get method for login
@@ -47,7 +48,7 @@ router.post('/login', function(req,res,next){
     {
       return next(err);
     }
-    return res.redirect("/books")
+    return res.redirect("/bookings")
     })
   })(req,res,next)
 });
@@ -95,7 +96,7 @@ router.post('/register', function(req,res,next){
     }
     else{
       return passport.authenticate('local')(req,res,()=>{
-        res.redirect("/books");
+        res.redirect("/bookings");
       })
     }
   })

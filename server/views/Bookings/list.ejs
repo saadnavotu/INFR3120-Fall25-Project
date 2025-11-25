@@ -39,12 +39,22 @@
                         <td class="text-center col-1"><%= b.durationHours || '—' %></td>
                         <td class="text-center col-1"><%= b.status %></td>
                         <td class="text-center col-2">
+
+                            <% if (typeof displayName === 'string' && displayName) { %>
                             <a href="/bookings/edit/<%= b._id %>" class="btn btn-primary btn-sm">
+                                 
                                 <i class="fas fa-pencil-alt"></i> Edit
+
+                                
                             </a>
+
+                            <% } %>
+
+                            <% if (typeof displayName === 'string' && displayName) { %>
                             <a href="/bookings/delete/<%= b._id %>" class="btn btn-danger btn-sm" onclick="return confirm('Delete this booking?')">
                                 <i class="fas fa-trash-alt"></i> Delete
                             </a>
+                            <% } %>
                         </td>
                     </tr>
                 <% } %>
