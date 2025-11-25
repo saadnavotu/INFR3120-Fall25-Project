@@ -10,20 +10,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
-router.get('/login', (req, res) => {
-    res.render('auth/login', { title: 'Login', displayName: "" });
-});
-
-router.get('/register', (req, res) => {
-    res.render('auth/register', { title: 'Register', displayName: "" });
-});
-
-
-router.get('/logout', (req, res) => {
-    res.redirect('/');
-});
-
-
 // Code used from lectures
 
 // Get method for login
