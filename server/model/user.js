@@ -2,6 +2,7 @@
 const { trim, type } = require('jquery');
 let mongoose = require('mongoose');
 let passportLocalMongoose = require('passport-local-mongoose');
+const { collection } = require('./booking');
 
 let User = mongoose.Schema({
     username:
@@ -15,7 +16,7 @@ let User = mongoose.Schema({
     {
         type:String,
         default:"",
-        trim:true,s
+        trim:true,
         required:'Password is required'
     },*/
     email:

@@ -33,12 +33,11 @@ router.get('/', async (req, res, next) => {
 });
 
 // GET route for displaying the Add Booking Page Create Operation
-router.get('/add', requireAuth, async (req, res, next) => {
+router.get('/add', async (req, res, next) => {
     try {
         res.render('Bookings/add', {
             title: 'Add Booking',
-            displayName: req.user ? req.user.displayName : "",
-            error: ""
+            displayName: req.user ? req.user.displayName : ""
         });
     } catch (err) {
         console.log(err);
