@@ -11,11 +11,12 @@ let session = require('express-session');
 let passport = require('passport');
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
+
 let flash = require('connect-flash');
+let cors = require('cors')
+
 var app = express();
 
-let cors = require('cors')
-var app = express();
 let userModel = require('../model/user');
 let User = userModel.User;
 
