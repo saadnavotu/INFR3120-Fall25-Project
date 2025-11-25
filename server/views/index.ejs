@@ -1,0 +1,49 @@
+<%- include ./partials/header.ejs %>
+<%- include ./partials/main_nav.ejs %>
+    <!-- HEADER / HERO -->
+    <header id="home" class="hero">
+        <img src="/media/logo.png" alt="Logo" class="hero-logo">
+        <h1>Premium Car Detailing</h1>
+        <p>Your car deserves the best care.</p>
+    </header>
+
+
+    <!-- PACKAGES SECTION -->
+    <section id="packages" class="packages-section">
+        <h2>Our Packages</h2>
+
+        <div class="package-container">
+
+            <div class="package-card">
+                <h3>Regular Package</h3>
+                <p>• Exterior wash<br>• Interior vacuum<br>• Window cleaning</p>
+                <button>Choose Regular</button>
+            </div>
+
+            <div class="package-card">
+                <h3>Deluxe Package</h3>
+                <p>• Exterior wash + wax<br>• Interior detailing<br>• Tire shine</p>
+                <button>Choose Deluxe</button>
+            </div>
+
+            <div class="package-card">
+                <h3>Premium Package</h3>
+                <p>• Full interior shampoo<br>• Deep exterior polish<br>• Engine bay clean</p>
+                <button>Choose Premium</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+<%- include ./partials/footer.ejs %>

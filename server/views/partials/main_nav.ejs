@@ -1,0 +1,37 @@
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-left">
+        <img src="/media/logo.png" class="logo" alt="Logo">
+        <span class="brand">Car Detail System</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#packages">Packages</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/bookings">Bookings</a></li>
+        <li><a href="/packages">Add Package</a></li>
+        
+        
+        <!-- AUTH BUTTONS -->
+        <% if(typeof displayName=='string' && displayName) { %>
+            <li class="navbar-text" style="color:white">
+    <i class="fas fa-lg fa-user"></i>
+    Welcome, <%= displayName %>
+</li>
+
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">
+                    <i class="fas fa-lg fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link">
+                        <i class="fas fa-lg fa-sign-in-alt"></i> Login
+                    </a>
+                </li>
+                <% } %>
+
+    </ul>
+    </nav>
