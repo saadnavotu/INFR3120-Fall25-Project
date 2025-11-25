@@ -2,129 +2,138 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 
-//connecting the booking in models/bookings
+// connect to our booking model
 let Booking = require('../model/booking');
 
-// READ – Display all bookings
-router.get('/', async (req, res, next) => {
-  try {
-    // dont need servicePackageId since we store the package as a string now
-    const bookingList = await Booking.find().sort({ bookingDate: -1 });
-    res.render('Bookings/list', {
-      title: 'Bookings',
-      bookingList: bookingList
-    });
-  }
-  catch (err) {
-    console.log(err);
-    // send empty array so EJS doesn't crash
-    res.render('Bookings/list', { 
-      title: 'Bookings',
-      bookingList: [],
-      error: 'Error on the Server' 
-    });
-  }
-});
-
-
-// CREATE Display Add Form
-router.get('/add', async (req, res, next) => {
-  try {
-    // No more fetching packages from DB
-    res.render('Bookings/add', { title: 'Add Booking' });
-  }
-  catch (err) {
-    console.log(err);
-    res.render('Bookings/list', { error: 'Error on the Server' });
-  }
-});
-
-// CREATE – Process Add Form
-router.post('/add', async (req, res, next) => {
-  try {
-    // basic server side validation
-    if (!req.body.customerName || !req.body.customerPhone || !req.body.servicePackage || !req.body.bookingDate) {
-      return res.render('Bookings/add', { error: 'Missing required fields' });
+function requireAuth(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.redirect('/login');
     }
+    next();
+}
 
-    let newBooking = Booking({
-      customerName: req.body.customerName,
-      customerPhone: req.body.customerPhone,
-      customerEmail: req.body.customerEmail,
-      vehicleMakeModel: req.body.vehicleMakeModel,
-      servicePackage: req.body.servicePackage, // now stored as string
-      bookingDate: req.body.bookingDate,
-      durationHours: req.body.durationHours || 2,
-      notes: req.body.notes
-    });
-
-    await Booking.create(newBooking);
-    res.redirect('/bookings');
-  }
-  catch (err) {
-    console.log(err);
-    res.render('Bookings/add', { error: 'Error on the server' });
-  }
+// GET route for displaying all bookings --> Read Operation
+router.get('/', async (req, res, next) => {
+    try {
+        const bookingList = await Booking.find().sort({ bookingDate: -1 });
+        res.render('Bookings/list', {
+            title: 'Bookings',
+            bookingList: bookingList,
+            displayName: req.user ? req.user.displayName : ""
+        });
+    } catch (err) {
+        console.log(err);
+        res.render('Bookings/list', {
+            title: 'Bookings',
+            bookingList: [],
+            error: 'Error on the Server',
+            displayName: req.user ? req.user.displayName : ""
+        });
+    }
 });
 
-// UPDATE – display Edit Form
+// GET route for displaying the Add Booking Page --> Create Operation
+router.get('/add', async (req, res, next) => {
+    try {
+        res.render('Bookings/add', {
+            title: 'Add Booking',
+            displayName: req.user ? req.user.displayName : ""
+        });
+    } catch (err) {
+        console.log(err);
+        res.render('Bookings/list', {
+            error: 'Error on the Server',
+            displayName: req.user ? req.user.displayName : ""
+        });
+    }
+});
+
+// POST route for processing the Add Booking Page --> Create Operation
+router.post('/add', async (req, res, next) => {
+    try {
+        // basic server side validation
+        if (!req.body.customerName || !req.body.customerPhone || !req.body.servicePackage || !req.body.bookingDate) {
+            return res.render('Bookings/add', {
+                error: 'Missing required fields',
+                displayName: req.user ? req.user.displayName : ""
+            });
+        }
+
+        let newBooking = Booking({
+            customerName: req.body.customerName,
+            customerPhone: req.body.customerPhone,
+            customerEmail: req.body.customerEmail,
+            vehicleMakeModel: req.body.vehicleMakeModel,
+            vehiclePlate: req.body.vehiclePlate,
+            servicePackage: req.body.servicePackage,
+            bookingDate: req.body.bookingDate,
+            durationHours: req.body.durationHours || 2,
+            notes: req.body.notes
+        });
+
+        await Booking.create(newBooking);
+        res.redirect('/bookings');
+    } catch (err) {
+        console.log(err);
+        res.render('Bookings/add', {
+            error: 'Error on the Server',
+            displayName: req.user ? req.user.displayName : ""
+        });
+    }
+});
+
+// GET route for displaying the Edit Booking Page --> Update Operation
 router.get('/edit/:id', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const bookingToEdit = await Booking.findById(id);
-
-    
-    res.render('Bookings/edit', {
-      title: 'Edit Booking',
-      booking: bookingToEdit
-    });
-  }
-  catch (err) {
-    console.log(err);
-    next(err);
-  }
+    try {
+        const id = req.params.id;
+        const bookingToEdit = await Booking.findById(id);
+        res.render('Bookings/edit', {
+            title: 'Edit Booking',
+            booking: bookingToEdit,
+            displayName: req.user ? req.user.displayName : ""
+        });
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
 });
 
-// UPDATE – process Edit Form
+// POST route for processing the Edit Booking Page --> Update Operation
 router.post('/edit/:id', async (req, res, next) => {
-  try {
-    const id = req.params.id;
+    try {
+        const id = req.params.id;
 
-    let updatedBooking = {
-      customerName: req.body.customerName,
-      customerPhone: req.body.customerPhone,
-      customerEmail: req.body.customerEmail,
-      vehicleMakeModel: req.body.vehicleMakeModel,
-      servicePackage: req.body.servicePackage, // updated as string
-      bookingDate: req.body.bookingDate,
-      durationHours: req.body.durationHours || 2,
-      notes: req.body.notes
-    };
+        let updatedBooking = {
+            _id: id,
+            customerName: req.body.customerName,
+            customerPhone: req.body.customerPhone,
+            customerEmail: req.body.customerEmail,
+            vehicleMakeModel: req.body.vehicleMakeModel,
+            vehiclePlate: req.body.vehiclePlate,
+            servicePackage: req.body.servicePackage,
+            bookingDate: req.body.bookingDate,
+            durationHours: req.body.durationHours || 2,
+            notes: req.body.notes
+        };
 
-    await Booking.findByIdAndUpdate(id, updatedBooking);
-    res.redirect('/bookings');
-  }
-  catch (err) {
-    console.log(err);
-    next(err);
-  }
+        await Booking.findByIdAndUpdate(id, updatedBooking);
+        res.redirect('/bookings');
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
 });
 
-
-
-/*// DELETE via POST
-router.post('/delete/:id', async (req, res, next) => {
-  try {
-    const booking = await Booking.findByIdAndDelete(req.params.id);
-    if (!booking) return next(new Error('Booking not found'));
-    res.redirect('/bookings');
-  } catch (err) {
-    next(err);
-  }
+// GET route for Delete Booking --> Delete Operation
+router.get('/delete/:id', async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        await Booking.deleteOne({ _id: id });
+        res.redirect('/bookings');
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
 });
-
-
-*/
-
 
 module.exports = router;
