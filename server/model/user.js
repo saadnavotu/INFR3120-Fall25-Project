@@ -12,6 +12,11 @@ let User = mongoose.Schema({
         trim:true,
         required:'Username is required'
     },
+    profileImage:
+    {
+        type:String,
+        default:"",
+    },
     /*password:
     {
         type:String,
