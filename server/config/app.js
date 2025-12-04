@@ -53,6 +53,9 @@ app.use(passport.session());
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 var packagesRouter = require('../routes/packages');
+var resetRouter = require('../routes/reset');
+app.use('/', resetRouter);
+
 
 
 
