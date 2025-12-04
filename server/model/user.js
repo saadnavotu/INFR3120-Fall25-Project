@@ -3,6 +3,7 @@ const { trim, type } = require('jquery');
 let mongoose = require('mongoose');
 let passportLocalMongoose = require('passport-local-mongoose');
 const { collection } = require('./booking');
+const crypto = require('crypto'); 
 
 let User = mongoose.Schema({
     username:
@@ -68,11 +69,12 @@ let User = mongoose.Schema({
 const options = { MissingPasswordError: 'Wrong/Missing Password' };
 
 
-UserSchema.plugin(passportLocalMongoose, options);
+User.plugin(passportLocalMongoose, options);
 
 //  create reset token and store its hash and expiry on the user
 
-UserSchema.methods.createPasswordResetToken = function () {
+User.methods.createPasswordResetToken = function () { 
+
 
   //  token we will send in email
 
@@ -81,11 +83,9 @@ UserSchema.methods.createPasswordResetToken = function () {
   // then we store hashed token in DB for security
 
   this.resetPasswordToken = crypto.createHash('sha256').update(rawToken).digest('hex');
-
-  // make the expire date one hour from now
-
-  this.resetPasswordExpires = Date.now() + 60 * 60 * 1000;
   
+  // make the expire date one hour from now
+  this.resetPasswordExpires = Date.now() + 60 * 60 * 1000;
   return rawToken;
 };
 
