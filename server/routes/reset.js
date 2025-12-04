@@ -1,9 +1,7 @@
-// server/routes/reset.js
 const express = require('express');
 const crypto = require('crypto');
 const router = express.Router();
 const { User } = require('../model/user'); 
-
 
 router.get('/forgot', (req, res) => {
   res.render('auth/forgot', { message: null, displayName: req.user ? req.user.displayName : null });
@@ -18,11 +16,11 @@ router.post('/forgot', async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
-    let message = 'Link sent to email.';
+    let message = 'Link sent to console.';
     if (user) {
       const rawToken = user.createPasswordResetToken();
       await user.save({ validateBeforeSave: false });
-      const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/auth/reset/${rawToken}`;
+      const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset/${rawToken}`;
       console.log('PASSWORD RESET LINK (dev):', resetUrl);
     }
     res.render('auth/forgot', { message, displayName: req.user ? req.user.displayName : null });
@@ -31,7 +29,6 @@ router.post('/forgot', async (req, res) => {
     res.render('auth/forgot', { message: 'Server error', displayName: req.user ? req.user.displayName : null });
   }
 });
-
 
 router.post('/reset/:token', async (req, res) => {
   try {

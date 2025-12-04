@@ -4,7 +4,8 @@
 <main class="container mt-4">
   <h1>Reset Password</h1>
 
-  <form method="POST" action="/auth/reset/<%= token %>">
+  <form method="POST" action="/reset/<%= token %>">
+
     <div class="mb-3">
       <input type="password" class="form-control" name="password" placeholder="Enter new password" required>
     </div>
