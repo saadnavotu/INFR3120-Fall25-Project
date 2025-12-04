@@ -49,6 +49,51 @@ let User = mongoose.Schema({
         default:Date.now
     }
 },
+
+
+// implementing the password reset fields for bonus marks 
+
+resetPasswordToken: {
+    type: String,
+    default: undefined
+  },
+  resetPasswordExpires: {
+    type: Date,
+    default: undefined
+  }
+}, {
+  collection: "user"
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
     collection:"user"
 }
