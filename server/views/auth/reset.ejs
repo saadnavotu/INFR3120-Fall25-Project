@@ -1,0 +1,28 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<body class="reset-page">
+<div class="content-wrapper">
+
+<main class="container mt-4">
+  <h1>Reset Password</h1>
+
+  <form method="POST" action="/reset/<%= token %>">
+
+    <div class="mb-3">
+      <input type="password" class="form-control" name="password" placeholder="Enter new password" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Reset Password</button>
+    <a href="/" class="btn btn-warning">Cancel</a>
+  </form>
+
+  <% if (message) { %>
+    <div class="alert alert-info mt-3"><%= message %></div>
+  <% } %>
+</main>
+
+</div>
+</body>
+
+<%- include ../partials/footer.ejs %>

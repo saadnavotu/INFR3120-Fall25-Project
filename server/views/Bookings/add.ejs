@@ -1,0 +1,86 @@
+<% if (typeof displayName === "undefined") displayName = ""; %>
+<% if (typeof error === "undefined") error = ""; %>
+
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/main_nav.ejs') %>
+
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+            <% if (error) { %>
+                <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+            <form class="form" action="/bookings/add" method="post">
+                <div class="form-group mb-3">
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" class="form-control" id="customerName"
+                           name="customerName" placeholder="Enter customer name" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="customerPhone">Phone</label>
+                    <input type="text" class="form-control" id="customerPhone"
+                           name="customerPhone" placeholder="Enter phone number" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="customerEmail">Email</label>
+                    <input type="email" class="form-control" id="customerEmail"
+                           name="customerEmail" placeholder="Enter email">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="vehicleMakeModel">Vehicle Make/Model</label>
+                    <input type="text" class="form-control" id="vehicleMakeModel"
+                           name="vehicleMakeModel" placeholder="Enter vehicle make/model">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="vehiclePlate">Plate</label>
+                    <input type="text" class="form-control" id="vehiclePlate"
+                           name="vehiclePlate" placeholder="Enter vehicle plate number">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="servicePackage">Service Package</label>
+                    <select class="form-control" id="servicePackage" name="servicePackage" required>
+                        <option value="">-- choose package --</option>
+                        <option value="Basic Wash">Basic Wash - $20</option>
+                        <option value="Deluxe Wash">Deluxe Wash - $35</option>
+                        <option value="Premium Wash">Premium Wash - $50</option>
+                        <option value="Full Service">Full Service - $75</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="bookingDate">Date & Time</label>
+                    <input type="datetime-local" class="form-control" id="bookingDate"
+                           name="bookingDate" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="durationHours">Duration (hours)</label>
+                    <input type="number" class="form-control" id="durationHours"
+                           name="durationHours" value="2" min="1">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="notes">Notes</label>
+                    <textarea class="form-control" id="notes" name="notes"
+                              placeholder="Enter any notes"></textarea>
+                </div>
+
+                <br>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-edit"></i> Create
+                </button>
+                <a href="/bookings" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>

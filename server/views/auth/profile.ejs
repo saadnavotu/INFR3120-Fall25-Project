@@ -1,0 +1,25 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<body class="profile-page">
+<div class="content-wrapper">
+
+<main class="container mt-4">
+  <h1>My Profile</h1>
+
+  <% if (user.profileImage) { %>
+    <img src="/uploads/<%= user.profileImage %>" class="profile-img mb-3">
+  <% } else { %>
+    <p>No profile image uploaded</p>
+  <% } %>
+
+  <form action="/users/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="profileImage" class="form-control mb-2" required>
+    <button class="btn btn-success">Upload</button>
+  </form>
+</main>
+
+</div>
+</body>
+
+<%- include ../partials/footer.ejs %>
