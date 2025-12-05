@@ -19,40 +19,42 @@
                 </a>
             <% } %>
 
-            <table class="table table-bordered table-striped table-hover">
-                <tr class="d-flex">
-                    <th class="text-center col-3">Package</th>
-                    <th class="col-5">Details</th>
-                    <th class="text-center col-1">Price</th>
-                    <th class="text-center col-1"></th>
-                    <th class="text-center col-1"></th>
-                </tr>
+            <table class="table table-bordered table-striped table-hover table-light">
+    
+    <!-- Header Row -->
+    <tr class="d-flex">
+        <th class="text-center col-3">Package</th>
+        <th class="text-center col-5">Details</th>
+        <th class="text-center col-2">Price</th>
+        <th class="text-center col-2">Actions</th>
+    </tr>
 
-                <% PackageList.forEach(p => { %>
-                <tr class="d-flex">
-                    <td class="text-center col-3"><%= p.name %></td>
-                    <td class="col-5"><%= p.description %></td>
-                    <td class="text-center col-1">$<%= p.price %></td>
+    <% PackageList.forEach(p => { %>
+    <tr class="d-flex">
+        <td class="text-center col-3"><%= p.name %></td>
+        <td class="col-5"><%= p.description %></td>
+        <td class="text-center col-2">$<%= p.price %></td>
 
-                    <td class="text-center col-1">
-                        <% if (displayName) { %>
-                            <a href="/packages/edit/<%= p._id %>" class="btn btn-primary btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        <% } %>
-                    </td>
+        <!-- ✅ SINGLE Actions column (EDIT + DELETE inside ONE td) -->
+        <td class="text-center col-2">
+            <% if (displayName) { %>
+                <a href="/packages/edit/<%= p._id %>" class="btn btn-primary btn-sm">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
 
-                    <td class="text-center col-1">
-                        <% if (displayName) { %>
-                            <a href="/packages/delete/<%= p._id %>" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        <% } %>
-                    </td>
-                </tr>
-                <% }) %>
+                <a href="/packages/delete/<%= p._id %>" 
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Delete this package?')">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </a>
+            <% } %>
+        </td>
+    </tr>
+    <% }) %>
 
-            </table>
+</table>
+
+
 
         </div>
     </div>

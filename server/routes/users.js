@@ -3,6 +3,30 @@ var router = express.Router();
 const upload = require('../config/multer');
 let userModel = require('../model/user');
 let User = userModel.User;
+const fs = require('fs');
+const path = require('path');
+
+router.post('/delete-pfp', async (req, res) => {
+  try {
+    const user = req.user;
+
+    if (user.profileImage && user.profileImage !== 'default.png') {
+      const filePath = path.join(__dirname, '../../public/uploads', user.profileImage);
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+
+      user.profileImage = null;
+      await user.save();
+    }
+
+    res.redirect('/users/profile');
+  } catch (err) {
+    console.error(err);
+    res.redirect('/users/profile');
+  }
+});
 
 // profile page
 router.get('/profile', (req, res, next) => {
