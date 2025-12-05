@@ -52,6 +52,7 @@ var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 var packagesRouter = require('../routes/packages');
 var resetRouter = require('../routes/reset');
+app.use('/', resetRouter);
 
 // view engine setup for packaegs CRUD
 app.set('views', path.join(__dirname, '../views'));
@@ -85,8 +86,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-app.use('/', resetRouter);
-
 
 module.exports = app;
