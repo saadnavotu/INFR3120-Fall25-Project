@@ -1,3 +1,9 @@
+<!--
+  Edit Booking Page
+  This page allows the user to update an existing booking's details.
+  It shows a form pre-filled with the booking's current data and allows saving or canceling.
+-->
+
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/main_nav.ejs') %>
 
@@ -6,43 +12,54 @@
     <div class="container">
         <div class="row">
             <div class="offset-md-3 col-md-6">
+                
+                <!-- Page heading -->
                 <h1><%= title %></h1>
 
+                <!-- Display error message if any -->
                 <% if (error) { %>
                     <div class="alert alert-danger"><%= error %></div>
                 <% } %>
 
+                <!-- Booking edit form -->
                 <form class="form" action="/bookings/edit/<%= booking._id %>" method="post">
+
+                    <!-- Customer Name -->
                     <div class="form-group mb-3">
                         <label for="customerName">Customer Name</label>
                         <input type="text" class="form-control" id="customerName"
                             name="customerName" value="<%= booking.customerName %>" required>
                     </div>
 
+                    <!-- Customer Phone -->
                     <div class="form-group mb-3">
                         <label for="customerPhone">Phone</label>
                         <input type="text" class="form-control" id="customerPhone"
                             name="customerPhone" value="<%= booking.customerPhone %>" required>
                     </div>
 
+                    <!-- Customer Email -->
                     <div class="form-group mb-3">
                         <label for="customerEmail">Email</label>
                         <input type="email" class="form-control" id="customerEmail"
                             name="customerEmail" value="<%= booking.customerEmail %>">
                     </div>
 
+                    <!-- Vehicle Make/Model -->
                     <div class="form-group mb-3">
                         <label for="vehicleMakeModel">Vehicle Make/Model</label>
                         <input type="text" class="form-control" id="vehicleMakeModel"
                             name="vehicleMakeModel" value="<%= booking.vehicleMakeModel %>">
                     </div>
 
+                    <!-- Vehicle Plate -->
                     <div class="form-group mb-3">
                         <label for="vehiclePlate">Plate</label>
                         <input type="text" class="form-control" id="vehiclePlate"
                             name="vehiclePlate" value="<%= booking.vehiclePlate %>">
                     </div>
 
+                    <!-- Service Package -->
                     <div class="form-group mb-3">
                         <label for="servicePackage">Service Package</label>
                         <select class="form-control" id="servicePackage" name="servicePackage" required>
@@ -54,6 +71,7 @@
                         </select>
                     </div>
 
+                    <!-- Booking Date & Time -->
                     <div class="form-group mb-3">
                         <label for="bookingDate">Date & Time</label>
                         <input type="datetime-local" class="form-control" id="bookingDate"
@@ -62,12 +80,14 @@
                             required>
                     </div>
 
+                    <!-- Duration in hours -->
                     <div class="form-group mb-3">
                         <label for="durationHours">Duration (hours)</label>
                         <input type="number" class="form-control" id="durationHours"
                             name="durationHours" min="1" value="<%= booking.durationHours %>">
                     </div>
 
+                    <!-- Booking Status -->
                     <div class="form-group mb-3">
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status">
@@ -77,11 +97,13 @@
                         </select>
                     </div>
 
+                    <!-- Notes -->
                     <div class="form-group mb-3">
                         <label for="notes">Notes</label>
                         <textarea class="form-control" id="notes" name="notes" placeholder="Enter notes"><%= booking.notes %></textarea>
                     </div>
 
+                    <!-- Action buttons -->
                     <br>
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-edit"></i> Save
