@@ -1,0 +1,73 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/main_nav.ejs') %>
+
+<body class="bookings-page">
+
+<div class="content-wrapper">
+
+<!-- Main content -->
+<main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1><%= title %></h1>
+
+            <% if (typeof displayName === 'string' && displayName) { %>
+                <a href="/bookings/add" class="btn btn-primary mb-3" role="button">
+                    <i class="fas fa-plus-circle"></i> Add Booking
+                </a>
+            <% } %>
+
+            <table class="table table-bordered table-striped table-hover table-light">
+                <!-- Header Row -->
+                <tr class="d-flex">
+                    <th class="text-center col-2">Customer</th>
+                    <th class="text-center col-2">Phone</th>
+                    <th class="text-center col-2">Email</th>
+                    <th class="text-center col-2">Vehicle</th>
+                    <th class="text-center col-1">Plate</th>
+                    <th class="text-center col-1">Package</th>
+                    <th class="text-center col-1">Duration</th>
+                    <th class="text-center col-1">Status</th>
+                    <th class="text-center col-2">Actions</th>
+                </tr>
+
+                <% for (let i = 0; i < bookingList.length; i++) { 
+                    const b = bookingList[i]; %>
+                    <tr class="d-flex">
+                        <td class="text-center col-2"><%= b.customerName %></td>
+                        <td class="text-center col-2"><%= b.customerPhone %></td>
+                        <td class="text-center col-2"><%= b.customerEmail || '—' %></td>
+                        <td class="text-center col-2"><%= b.vehicleMakeModel || '—' %></td>
+                        <td class="text-center col-1"><%= b.vehiclePlate || '—' %></td>
+                        <td class="text-center col-1"><%= b.servicePackage || '—' %></td>
+                        <td class="text-center col-1"><%= b.durationHours || '—' %></td>
+                        <td class="text-center col-1"><%= b.status %></td>
+                        <td class="text-center col-2">
+
+                            <% if (typeof displayName === 'string' && displayName) { %>
+                            <a href="/bookings/edit/<%= b._id %>" class="btn btn-primary btn-sm">
+                                <i class="fas fa-pencil-alt"></i> Edit
+                            </a>
+                            <% } %>
+
+                            <% if (typeof displayName === 'string' && displayName) { %>
+                            <a href="/bookings/delete/<%= b._id %>" 
+                               class="btn btn-danger btn-sm" 
+                               onclick="return confirm('Delete this booking?')">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                            <% } %>
+
+                        </td>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
+</main>
+
+</div> <!-- END content-wrapper -->
+
+</body>
+
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,40 @@
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-left">
+        <img src="/media/logo.png" class="logo" alt="Logo">
+        <span class="brand">Car Detail System</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="/#actions"><i class="fas fa-rocket"></i> Get Started</a></li>
+        <li><a href="/#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li><a href="/bookings"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+        <li><a href="/packages"><i class="fas fa-box"></i> Packages</a></li>
+
+
+        <!-- AUTH BUTTONS -->
+         <% if(typeof displayName=='string' && displayName) { %>
+            <li class="navbar-text" style="color:white">
+                <i class="fas fa-lg fa-user"></i>
+                Welcome, <%= displayName %>
+            </li>
+                    <li class="nav-item" style="color: white">
+                        <i class="fas fa-user-circle"></i>
+                        <a class="nav-link" href="/users/profile">Profile</a>
+                    </li>
+
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </li>
+                <% } %>
+    </ul>
+</nav>

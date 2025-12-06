@@ -1,0 +1,27 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<body class="forgot-page">
+<div class="content-wrapper">
+
+<main class="container mt-4">
+    <h1>Forgot Password</h1>
+
+    <form method="POST" action="/forgot">
+        <div class="mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send Reset Link</button>
+        <a href="/" class="btn btn-warning">Cancel</a>
+    </form>
+
+    <% if (message) { %>
+        <div class="alert alert-info mt-3"><%= message %></div>
+    <% } %>
+</main>
+
+</div>
+</body>
+
+<%- include ../partials/footer.ejs %>

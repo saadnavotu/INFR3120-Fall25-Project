@@ -1,0 +1,33 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<body class="login-page">
+<div class="content-wrapper">
+
+<main class="container mt-4">
+    <h1>Please login</h1>
+
+    <form method="post" autocomplete="off">
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Enter username" required autofocus>
+        </div>
+
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+            <div class="mt-1">
+                or <a href="/register">Register here</a>
+            </div>
+            <div class="mt-1">
+                <a href="/forgot" class="btn btn-link">Forgot Password?</a>
+            </div>
+        </div>
+
+        <button class="btn btn-success">Login</button>
+        <a href="/" class="btn btn-warning">Cancel</a>
+    </form>
+</main>
+
+</div>
+</body>
+
+<%- include ../partials/footer.ejs %>

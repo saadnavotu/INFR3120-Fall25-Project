@@ -1,0 +1,66 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<body class="packages-page">
+<div class="content-wrapper">
+
+<% if (typeof displayName === "undefined") displayName = ""; %>
+<% if (typeof error === "undefined") error = ""; %>
+
+<main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+
+            <h1><%= title %></h1>
+
+            <% if (displayName) { %>
+                <a href="/packages/add" class="btn btn-primary mb-3">
+                    <i class="fas fa-plus-circle"></i> Add Package
+                </a>
+            <% } %>
+
+            <table class="table table-bordered table-striped table-hover table-light">
+    
+    <!-- Header Row -->
+    <tr class="d-flex">
+        <th class="text-center col-3">Package</th>
+        <th class="text-center col-5">Details</th>
+        <th class="text-center col-2">Price</th>
+        <th class="text-center col-2">Actions</th>
+    </tr>
+
+    <% PackageList.forEach(p => { %>
+    <tr class="d-flex">
+        <td class="text-center col-3"><%= p.name %></td>
+        <td class="col-5"><%= p.description %></td>
+        <td class="text-center col-2">$<%= p.price %></td>
+
+        <!-- ✅ SINGLE Actions column (EDIT + DELETE inside ONE td) -->
+        <td class="text-center col-2">
+            <% if (displayName) { %>
+                <a href="/packages/edit/<%= p._id %>" class="btn btn-primary btn-sm">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+
+                <a href="/packages/delete/<%= p._id %>" 
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Delete this package?')">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </a>
+            <% } %>
+        </td>
+    </tr>
+    <% }) %>
+
+</table>
+
+
+
+        </div>
+    </div>
+</main>
+
+</div>
+</body>
+
+<%- include ../partials/footer.ejs %>

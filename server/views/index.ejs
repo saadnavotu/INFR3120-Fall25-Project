@@ -1,0 +1,60 @@
+<%- include ./partials/header.ejs %>
+<%- include ./partials/main_nav.ejs %>
+
+<body class="index-page">
+
+<div class="content-wrapper">
+
+    <!-- HEADER / HERO -->
+    <header id="home" class="hero">
+        <img src="/media/logo.png" alt="Logo" class="hero-logo">
+        <h1>Premium Car Detailing</h1>
+        <p>Your car deserves the best care.</p>
+    </header>
+
+    <!-- ACTION BUTTONS SECTION -->
+    <section id="actions" class="packages-section">
+        <h2>Get Started</h2>
+
+        <div class="package-container" style="justify-content: center; gap: 40px;">
+            
+            <!-- Packages Button -->
+            <div class="package-card" style="text-align: center;">
+                <h3>View Our Packages</h3>
+                <p>See all detailing services we offer.</p>
+                <a href="/packages">
+                    <button>View Packages</button>
+                </a>
+            </div>
+
+            <!-- Booking Button -->
+            <div class="package-card" style="text-align: center;">
+                <h3>Make a Booking</h3>
+                <p>Choose a package and book your appointment.</p>
+                <a href="/bookings">
+                    <button>Book Now</button>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+
+        <div class="contact-container">
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+</div>
+
+</body>
+
+<%- include ./partials/footer.ejs %>

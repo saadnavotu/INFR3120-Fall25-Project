@@ -1,0 +1,35 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<body class="register-page">
+<div class="content-wrapper">
+
+<main class="container mt-4">
+    <h1>Register</h1>
+
+    <form method="post" autocomplete="off">
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Enter username" required>
+        </div>
+
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+        </div>
+
+        <div class="mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+        </div>
+
+        <div class="mb-3">
+            <input type="text" class="form-control" name="displayName" placeholder="Enter display name" required>
+        </div>
+
+        <button class="btn btn-success">Register</button>
+        <a href="/" class="btn btn-warning">Cancel</a>
+    </form>
+</main>
+
+</div>
+</body>
+
+<%- include ../partials/footer.ejs %>
